@@ -1,0 +1,199 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<style>
+		#trash{width:200px;height:100px;background-color:white;margin-top:20px;margin-left:200px;}
+		.stack
+		{
+		width:80px;
+		height:20px;
+
+		border:0px solid black;    
+		}
+
+	</style>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+<body>
+	<h1>
+		Part 1
+	</h1>
+<div>
+	<table>
+
+		<tr>
+			<td>
+
+				<label>
+					Payment:
+				</label>
+			</td>
+			<td>
+				<input type="radio" name="pay" id="pay" value="Credit"> Credit Card
+				<input type="radio" name="pay" id="pay" value="transfer"> Wire transfer
+				<button onclick="myFunction()">Buy!</button>
+  
+			</td>
+
+			<td>
+			</td>
+			<td>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<p id="demo"></p>
+			</td>
+
+
+		</tr>
+	</table>
+</div>
+
+<div id="Tras" style="display:none">
+	Tansfer the amount to:reg.$957.00, to account 0009286322
+</div>
+<div id="Wir" style="display:none">
+Card number:<input type="number" name="no">Expiration:<input type="number" name="no" style="width:50px">/<input type="number" name="no" style="width:50px">3-digit security number:<input type="number" name="no" style="width:100px">
+</div>
+
+
+<h1 style="margin-top"10px">
+Part 2
+</h1>
+<ol ondragstart="">
+	<li draggable="true" class="stack">List Item 1</li>
+	<li draggable="true" class="stack">List Item 2</li>
+	<li draggable="true" class="stack">List Item 3</li>
+</ol>
+<div id="trash"><img src="images.png" alt="Smiley face" height="100" width="100"></div>
+</body>
+<h1 style="margin-top"20px">
+	Part 3
+</h1>
+<div>
+<table border="1">
+<tr>
+	<td>
+		1
+	</td>
+	<td>
+		Groceries
+	</td>
+	<td>
+		<button onclick="Fun(1)">More information!</button>
+	</td>
+</tr>
+<tr>
+	<td>
+		2
+	</td>
+	<td>
+		Grooming
+	</td>
+	<td>
+		<button onclick="Fun(2)">More information!</button>
+	</td>
+</tr>
+<tr>
+	<td>
+		3
+	</td>
+	<td>
+		Attractions
+	</td>
+	<td>
+		<button onclick="Fun(3)">More information!</button>
+	</td>
+</tr>
+
+
+</table>
+</div>
+
+<br/>
+<div id="Tr" style="display:none">
+	<h2>Description</h2>
+</div>
+<div id="fas">
+
+</div>
+
+
+
+</html>
+<script src="jquery.min.js"></script>
+<script src="jquery-ui-1.10.4.min.js"></script>
+<script type="text/javascript">
+function Fun(a) {
+jQuery.ajax({
+        url: "side.html",
+        success: function(result) {
+           var html = jQuery('<div>').html(result);
+if(a=='1'){
+ var abs=html.find("div#a").html();
+
+ document.getElementById('Tr').style.display = 'block';
+document.getElementById('fas').innerHTML=html.find("div#a").html();
+           
+			}
+			else if(a=='2'){
+			document.getElementById('Tr').style.display = 'block';
+			document.getElementById('fas').innerHTML=html.find("div#b").html();
+          
+			
+			}
+			else{
+         document.getElementById('Tr').style.display = 'block';
+		   document.getElementById('fas').innerHTML=html.find("div#c").html();
+			}
+
+        },
+    });
+	}
+$(function() {
+        $( ".stack" ).draggable({
+		 drag: function (event, ui) {
+		 console.log("Attaching Event");
+		 console.log(event);
+		 console.log(ui);
+    }});
+});
+
+$( document ).ready(function()
+{
+console.log("Pakistan is my country");});
+
+
+
+
+            $('#trash').droppable({
+			
+                    over: function(event,ui) {
+					console.log("Dropping data here");
+					console.log(event);
+					console.log(ui);
+                      //alert('working!');
+					  console.log(ui.helper);
+                        $(ui.helper).remove();
+                    }
+        });
+		
+
+function myFunction() {
+var a=$("#pay:checked").val();
+var b="Credit";
+if(a==b){
+document.getElementById('Wir').style.display = 'block';
+document.getElementById('Tras').style.display = 'none';
+}
+else{
+document.getElementById('Tras').style.display = 'block';
+document.getElementById('Wir').style.display = 'none';
+}
+   
+}
+function info(a) {
+alert(a);
+}
+</script>
